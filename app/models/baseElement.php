@@ -5,7 +5,12 @@ public = puede ser accedida desde cualquier lugar
 protected = puede ser solo accedida por sus hij@s */
 
 
-class baseElement{
+namespace app\models;
+
+require_once 'printable.php';
+
+
+class baseElement implements printable {
 
     public $title;
     public $description;
@@ -17,7 +22,6 @@ class baseElement{
         $this->description= $description;
         
     }
-
 
   /* change content */
     public function setTitle($t){
@@ -32,12 +36,15 @@ class baseElement{
     public function getTitle(){                 
         return $this->title;
     }
-
+/* get duration */
     public function getDurationAsString(){
         $years = floor($this->months / 12);  /* meses entre 12 */
         $extraMonths = $this->months % 12;
 
         return "$years years $extraMonths months";
     }
-
+    
+    public function getDescription(){
+        return $this->description;
+    }
 }

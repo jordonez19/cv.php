@@ -1,9 +1,11 @@
 <?php
 
+namespace app\models;
 
 require_once 'baseElement.php';
 
-class job extends baseElement{
+
+class job extends baseElement {
     
     public function __construct($title, $description )
     {
@@ -19,4 +21,5 @@ class job extends baseElement{
         return "Job duration $years years $extraMonths months";
     }
 
+    
 }

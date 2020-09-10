@@ -1,37 +1,7 @@
 <?php 
+require "./jobs.php";
 
-include "./jobs.php";
-
-$limitMonths = 24;
-
-function getDuration($months){
-    $years = floor($months / 12);  /* meses entre 12 */
-    $extraMonths = $months % 12;
-    return "$years years $months months";
-}
-
-
-function printJob($jobs){
-
-    if($jobs['visible'] != true){
-        return;
-}
-    
-
-    echo    '<li class="work-position">';
-    echo    '<h5>'. $jobs['title'] . '</h5>';
-    echo    '<p>' . $jobs['description'].'</p>';
-    echo    '<p>' . getDuration($jobs["months"]) .'</p>';
-
-    echo    '<strong>Achievements:</strong>';
-    echo    '<ul>';
-    echo    '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-    echo    '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-    echo    '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-    echo    '</ul>';
-    echo    '</li>';
-}
-
+$limitMonths = 200;
 
 ?>
 
@@ -63,7 +33,7 @@ function printJob($jobs){
         <h2>PHP Developer</h2>
         <ul>
             <li>Mail: javier19pedraza@gmail.com</li>
-            <li>Phone: 3507834094</li>
+            <li>Phone: +57 3507834094</li>
             <li>LinkedIn: https://linkedin.com</li>
         </ul>
         </div>
@@ -82,29 +52,31 @@ function printJob($jobs){
         <div>
             <h3 class="border-bottom-gray" >Work Experience</h3>
             <ul>
-            <?php 
-            
-           /* $idx= 0; */
-            
+
+<?php 
+
             for($idx = 0; $idx < count($jobs); $idx++ ){
-                $totalMonths =  $jobs[$idx]['months'];
-
+                $totalMonths =  $jobs[$idx]->months;
             if($totalMonths > $limitMonths){
-                break;
+            break;
             }
-
-               
-            printJob($jobs[$idx]);
+            printElement($jobs[$idx]);
         }
-            ?>
-
-
-            
-    
+?>
             </ul>
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
+            <ul>
+
+<?php 
+            for($idx = 0; $idx < count($projects); $idx++ ){
+            printElement($projects [$idx]);
+        }
+?>
+
+
+            </ul>
             <div class="project">
                 <h5>Project X</h5>
                 <div class="row">
